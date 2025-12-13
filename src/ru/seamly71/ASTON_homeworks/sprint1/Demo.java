@@ -1,8 +1,8 @@
-package sprint1;
+package ru.seamly71.ASTON_homeworks.sprint1;
 
 import java.lang.reflect.Field;
 
-public class Test {
+public class Demo {
 
     public static void main(String[] args) {
         System.out.println(
@@ -21,13 +21,16 @@ public class Test {
     }
 
     private static boolean testImmutability() {
-        ImmutableWithMutableField immutable_object = new ImmutableWithMutableField(2);
-        MutableIntWrapper from_getter = immutable_object.getMutableField();
+        ImmutableWithMutableField immutableObject =
+                new ImmutableWithMutableField(
+                        new MutableIntWrapper(2)
+                );
+        MutableIntWrapper fromGetter = immutableObject.getMutableField();
         try {
-            Field mutable_field = immutable_object.getClass().getDeclaredField("mutable_field");
-            mutable_field.setAccessible(true);
-            Object form_reflection = mutable_field.get(immutable_object);
-            return form_reflection != from_getter;
+            Field mutableField = immutableObject.getClass().getDeclaredField("mutableField");
+            mutableField.setAccessible(true);
+            Object formReflection = mutableField.get(immutableObject);
+            return formReflection != fromGetter;
         }
         catch (NoSuchFieldException|IllegalAccessException _){
             return false;

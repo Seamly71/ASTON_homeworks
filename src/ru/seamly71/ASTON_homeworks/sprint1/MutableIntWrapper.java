@@ -1,4 +1,4 @@
-package sprint1;
+package ru.seamly71.ASTON_homeworks.sprint1;
 
 public class MutableIntWrapper {
 
